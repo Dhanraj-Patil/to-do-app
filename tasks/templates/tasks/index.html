@@ -1,80 +1,161 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
 
 <style>
-
-	body{
-		background-color: #638CB8;
-	}
-
-	input{
-		width: 100%;
-		padding: 12px 20px;
-		margin: 8px 0;
-		box-sizing: border-box;
-	}
-
-	input::placeholder {
-	  color: #d3d3d3;
-	}
-
-	.submit{
-		background-color: #6BA3E8;
-	}
-
-	.center-column{
-		width:600px;
-		margin: 20px auto;
-		padding:20px;
-		background-color: #fff;
-		border-radius: 3px;
-		box-shadow: 6px 2px 30px 0px rgba(0,0,0,0.75);
-	}
-
-	.item-row{
-		background-color: #906abd;
-		margin: 10px;
-		padding: 20px;
-		border-radius: 3px;
-		color: #fff;
-		font-size: 16px;
-		box-shadow: 0px -1px 10px -4px rgba(0,0,0,0.75);
-	}
-
-	.btn-danger{
-		background-color: #ffae19;
-		border-color: #e59400;
-	}
-
-	.checkbox{
-		display: inline-block;
-		width: 5%;
-	}
-
-</style>
+        body {
+            background-color: rgb(74, 74, 207) !important;
+            font-family: 'Poppins', sans-serif !important;
+            height: 100vh;
+        }
+        
+        .btn {
+            width: 80px;
+            border-radius: 90px!important;
+            margin: 10px;
+            background-color: rgb(74, 74, 207)!important;
+            border: none!important;
+        }
+        
+        .entry {
+            font-weight: bold !important;
+            width: 100%;
+            background-color: #eef5ff;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            box-sizing: border-box;
+            border: 1px solid rgb(74, 74, 207);
+            height: 150px;
+            overflow: auto;
+            padding: 10px;
+        }
+        
+        .adds {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .add {
+            width: 50%;
+            margin: auto;
+            justify-content: center;
+            border-radius: 90px !important;
+        }
+        
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+        
+        input::placeholder {
+            color: #d3d3d3;
+        }
+        
+        .submit {
+            background-color: #6BA3E8;
+        }
+        
+        .center-column {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            margin: auto;
+            padding: 20px;
+            padding-bottom: 0;
+            background-color: rgb(215, 215, 250);
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px 0px rgb(74, 74, 207);
+        }
+        
+        span a {
+            color: white!important;
+        }
+        
+        .item-row {
+            text-align: center;
+            padding: 10px;
+            border-radius: 3px;
+            color: #fff;
+            font-size: 16px;
+        }
+        
+        .btn-danger {
+            background-color: #ffae19!important;
+            border-color: #e59400!important;
+        }
+        
+        .checkbox {
+            display: inline-block;
+            width: 5%;
+        }
+        
+        .success {
+            background-color: rgb(6, 155, 6) !important;
+        }
+        
+        .error {
+            background-color: rgb(231, 41, 41) !important;
+        }
+        
+        @media(prefers-color-scheme: dark) {
+            body {
+                background-color: black!important;
+                font-weight: 400 !important;
+            }
+            .btn {
+                background-color: white!important;
+                color: black!important;
+                font-weight: 600!important;
+            }
+            .btn-danger {
+                background-color: #ffae19!important;
+                border-color: #e59400!important;
+            }
+            .center-column {
+                background-color: rgb(34, 34, 34)!important;
+                box-shadow: 0 0 10px rgb(88, 88, 88);
+            }
+            .success {
+                background-color: rgb(6, 155, 6) !important;
+            }
+            .error {
+                background-color: rgb(231, 41, 41) !important;
+            }
+        }
+    </style>
 
 <div class="center-column">
 
-	<form method="POST" action="/">
-		{% csrf_token %}
-		{{form.title}}
-		<input class="btn btn-info" type="submit" value="Add" name="Create Task">
-	</form>
+        <form method="POST" action="/">
+            {% csrf_token %} {{form.title}}
+            <textarea class="entry" type="text"></textarea>
+            <div class="adds">
+                <input class="btn btn-info add" type="submit" value="Add" name="Create Task">
+            </div>
+        </form>
 
-	<div class="todo-list">
+        <div class="todo-list">
 
-	{% for task in tasks %}
-		<div class="item-row">
-			<a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a>
-			<a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a>
+            {% for task in tasks %} 
+            <div class="item-row">
+                <div><a class="btn btn-sm btn-info" href="{% url 'update_task' task.id %}">Update</a></div>
+                <div><a class="btn btn-sm btn-danger" href="{% url 'delete_task' task.id %}">Delete</a></div>
+                {% if task.complete == True %}
+                <span><a class="btn btn-sm error" href="{% url 'uncross_task' task.id %}">✘</a>
+                <s>{{task}}</s>
+                </span>
+                {% else %}
+                <span><a class="btn btn-sm success" href="{% url 'cross_task' task.id %}">✔︎</a>
+                {{task}}
+                </span>
+                {% endif %}
 
-
-			{% if task.complete == True %}
-				<span><a class="btn btn-sm" href="{% url 'uncross_task' task.id %}">✘</a><s>{{task}}</s></span>
-			{% else %}
-				<span><a class="btn btn-sm" href="{% url 'cross_task' task.id %}">✔︎</a>{{task}}</span>
-			{% endif %}
-			
-		</div>
-	{% endfor %}
-	</div>
-</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
